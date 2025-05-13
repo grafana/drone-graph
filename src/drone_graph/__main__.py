@@ -148,7 +148,7 @@ def generate_graph(pipelines: list[Pipeline], file: str, format: str) -> graphvi
     return dot
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(
         prog="drone-graph", description="Generate graphs from Drone pipelines."
     )
@@ -174,6 +174,4 @@ def main():
         written = graph.render(gv.name)
         shutil.move(written, outputFile)
 
-
-if __name__ == "__main__":
-    main()
+    return 0

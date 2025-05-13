@@ -4,9 +4,9 @@ Create graphics of your Drone build pipelines to better grasp what's happening i
 
 ## Dependencies
 
-You should likely set up a venv for this (e.g. `uv venv .venv`) before running anything.
+You should likely set up a venv for this (e.g. `uv venv .venv`) before running anything. Remember to source the venv.
 
-To run, do `uv sync` and source the venv, then `uv run main.py -h` for inputs required.
+To install this into the venv, run `uv pip install .`. This adds `drone-graph` to the PATH.
 
 The output should look something like this:
 
