@@ -1,3 +1,8 @@
 .DS_Store
 .venv/
 *.egg-info/
+
+*.svg
+*.png
+*.pdf
+!assets/*.png

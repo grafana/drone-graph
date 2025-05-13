@@ -113,9 +113,9 @@ def read_pipeline(file: str) -> list[Pipeline]:
     return pipelines
 
 
-def generate_graph(pipelines: list[Pipeline], file: str) -> graphviz.Digraph:
+def generate_graph(pipelines: list[Pipeline], file: str, format: str) -> graphviz.Digraph:
     dot = graphviz.Digraph(name=file, comment="The Drone pipelines.")
-    dot.format = "svg"
+    dot.format = format
 
     # Declare all pipelines first.
     for pipeline in pipelines:
@@ -161,16 +161,18 @@ def main():
         help="the path to output the graph to",
         default=".drone.yml.svg",
     )
+    _ = parser.add_argument("-t", "--type", help="the output format type ('svg', 'png', 'pdf')", default='svg')
     args = parser.parse_args()
     inputFile: str = args.file
     outputFile: str = args.output
+    outputFormat: str = args.type
 
     pipelines = read_pipeline(inputFile)
-    graph = generate_graph(pipelines, inputFile).unflatten(stagger=3)
+    graph = generate_graph(pipelines, inputFile, outputFormat).unflatten(stagger=3)
 
     with tempfile.NamedTemporaryFile(suffix=".gv") as gv:
-        svgPath = graph.render(gv.name)
-        shutil.move(svgPath, outputFile)
+        written = graph.render(gv.name)
+        shutil.move(written, outputFile)
 
 
 if __name__ == "__main__":
