@@ -21,4 +21,4 @@ jobs:
         with:
           persist-credentials: false
       - name: Run ruff
-        uses: astral-sh/ruff-action@84f83ecf9e1e15d26b7984c7ec9cf73d39ffc946 # v3
+        uses: astral-sh/ruff-action@278981a28ce3188b1e39527901f38254bf3aac89 # v4.1.0
